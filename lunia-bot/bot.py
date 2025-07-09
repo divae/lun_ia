@@ -225,6 +225,7 @@ async def contacto(update, context):
     msg = (
         "¿Quieres una consulta personalizada, acompañamiento lunar o inspiración para tu proyecto?\n"
         "Puedes contactarme directamente en Telegram: @divae\n\n"
+        "¿Te gustaría apoyar este proyecto? Invítame a un café virtual en: https://buymeacoffee.com/estela\n\n"
         "En LUN.IA combino mi experiencia personal, intuición y herramientas de inteligencia artificial para ofrecerte inspiración, rituales y guía adaptados a ti y a tu momento."
     )
     await update.message.reply_text(msg)
