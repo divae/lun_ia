@@ -269,10 +269,13 @@ async def send_daily_moon_message(app):
     )
     await app.bot.send_message(chat_id=CHANNEL_CHAT_ID, text=message, parse_mode='Markdown')
 
+async def post_init(app):
+    await send_daily_moon_message(app)
+
 def main():
     if not TOKEN:
         raise ValueError("TELEGRAM_TOKEN is not set in the environment.")
-    app = ApplicationBuilder().token(TOKEN).build()
+    app = ApplicationBuilder().token(TOKEN).post_init(post_init).build()
     app.add_handler(CommandHandler('start', start))
     app.add_handler(CommandHandler('moon', moon))
     app.add_handler(CommandHandler('logros', show_logros))
@@ -281,10 +284,6 @@ def main():
     app.add_handler(CommandHandler('mantra', mantra))
     app.add_handler(CommandHandler('conjuro', conjuro))
     app.add_handler(CommandHandler('contacto', contacto))
-
-    import asyncio
-    asyncio.run(send_daily_moon_message(app))
-
     app.run_polling()
 
 if __name__ == "__main__":
