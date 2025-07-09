@@ -1,13 +1,17 @@
 import os
 from dotenv import load_dotenv
-from telegram.ext import Updater, CommandHandler
+from telegram.ext import CommandHandler
 from datetime import datetime
 import random
 import json
+from telegram.ext import ApplicationBuilder
+import locale
+from astral import LocationInfo
+from astral.moon import moonrise
+from telegram.ext import ConversationHandler, MessageHandler, filters
 
 load_dotenv()
 TOKEN = os.getenv('TELEGRAM_TOKEN')
-
 # Constants for moon phase calculation
 MOON_CYCLE_DAYS = 30
 NEW_MOON_THRESHOLD = 7
@@ -20,6 +24,8 @@ MOON_PHASE_NAMES = ["Luna Nueva", "Cuarto Creciente", "Luna Llena", "Cuarto Meng
 # Cargar datos desde el archivo JSON
 with open("moon_data.json", encoding="utf-8") as f:
     MOON_DATA = json.load(f)
+
+locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')
 
 def get_moon_phase():
     """Calculate the current moon phase index (0-3)."""
@@ -64,8 +70,8 @@ def days_until_new_moon():
         days = MOON_CYCLE_DAYS
     return days
 
-def moon(update, context):
-    """Send the current moon phase, random recommendation, ritual, quote, days until next New Moon, and a random tip from the database."""
+async def moon(update, context):
+    """Send the current day in Spanish, the lunar message, and moonrise times for Madrid and Buenos Aires."""
     idx = get_moon_phase()
     phase_name = MOON_PHASE_NAMES[idx]
     phase_data = MOON_DATA[phase_name]
@@ -74,29 +80,132 @@ def moon(update, context):
     ritual = random.choice(phase_data["rituals"])
     quote = random.choice(phase_data["quotes"])
     tip = random.choice(phase_data["tips"])
-    message = (
-        f"🌙 Hoy es {phase_name}.\n\n"
-        f"🔬 {recommendation}\n"
-        f"✨ Ritual: {ritual}\n"
-        f"💬 Cita del día: {quote}\n\n"
-        f"🗓️ Faltan {days} días para la próxima Luna Nueva.\n"
-        f"💡 Tip lunar: {tip}"
-    )
-    update.message.reply_text(message)
+    now = datetime.now().strftime('%A, %-d de %B de %Y')
 
-def start(update, context):
+    # Moonrise for Madrid (hemisferio norte)
+    madrid = LocationInfo("Madrid", "Spain", "Europe/Madrid", 40.4168, -3.7038)
+    buenos_aires = LocationInfo("Buenos Aires", "Argentina", "America/Argentina/Buenos_Aires", -34.61, -58.38)
+    today = datetime.now().date()
+    try:
+        moonrise_madrid = moonrise(madrid.observer, date=today)
+        moonrise_madrid_str = moonrise_madrid.strftime('%H:%M') if moonrise_madrid else "No visible"
+    except Exception:
+        moonrise_madrid_str = "No visible"
+    try:
+        moonrise_ba = moonrise(buenos_aires.observer, date=today)
+        moonrise_ba_str = moonrise_ba.strftime('%H:%M') if moonrise_ba else "No visible"
+    except Exception:
+        moonrise_ba_str = "No visible"
+
+    message = (
+        f"✨ *LUN.IA - Mensaje Lunar Diario* ✨\n"
+        f"━━━━━━━━━━━━━━━━━━━━━━\n"
+        f"📅 *{now.capitalize()}*\n"
+        f"🌙 *Fase lunar:* {phase_name}\n"
+        f"━━━━━━━━━━━━━━━━━━━━━━\n"
+        f"🔮 *Recomendación:*\n{recommendation}\n\n"
+        f"🧘 *Ritual:*\n{ritual}\n\n"
+        f"💬 *Cita del día:*\n_{quote}_\n\n"
+        f"🗓️ *Próxima Luna Nueva:* Faltan {days} días\n"
+        f"━━━━━━━━━━━━━━━━━━━━━━\n"
+        f"💡 *Tip lunar:* {tip}\n"
+        f"━━━━━━━━━━━━━━━━━━━━━━"
+    )
+    await update.message.reply_text(message, parse_mode='Markdown')
+    await update.message.reply_text("¿Te gustaría anotar algo sobre tu proyecto hoy? Usa /anotar para registrar tu avance, idea o logro.")
+
+async def start(update, context):
     """Send a welcome message and usage instructions."""
-    update.message.reply_text("¡Hola! Usa /moon para obtener la fase lunar actual, una recomendación y un ritual.")
+    await update.message.reply_text("¡Hola! Usa /moon para obtener la fase lunar actual, una recomendación y un ritual.")
+
+NOTE, = range(1)
+
+async def ask_note(update, context):
+    await update.message.reply_text(
+        "¿Te gustaría anotar algo sobre tu proyecto hoy? Escribe tu avance, bloqueo, idea o logro y lo guardaré para ti.\n\nSi no quieres anotar nada, escribe /cancelar.")
+    return NOTE
+
+async def save_note(update, context):
+    user_id = str(update.effective_user.id)
+    note_text = update.message.text
+    now = datetime.now()
+    phase_idx = get_moon_phase()
+    phase_name = MOON_PHASE_NAMES[phase_idx]
+    note_entry = {
+        "date": now.strftime('%Y-%m-%d'),
+        "phase": phase_name,
+        "note": note_text
+    }
+    # Cargar y guardar en user_notes.json
+    try:
+        with open("user_notes.json", "r", encoding="utf-8") as f:
+            notes = json.load(f)
+    except Exception:
+        notes = {}
+    if user_id not in notes:
+        notes[user_id] = []
+    notes[user_id].append(note_entry)
+    with open("user_notes.json", "w", encoding="utf-8") as f:
+        json.dump(notes, f, ensure_ascii=False, indent=2)
+    await update.message.reply_text("¡Nota guardada! Puedes ver tu historial con /logros.")
+    return ConversationHandler.END
+
+async def cancel_note(update, context):
+    await update.message.reply_text("Anotación cancelada.")
+    return ConversationHandler.END
+
+async def show_logros(update, context):
+    user_id = str(update.effective_user.id)
+    try:
+        with open("user_notes.json", "r", encoding="utf-8") as f:
+            notes = json.load(f)
+    except Exception:
+        notes = {}
+    user_notes = notes.get(user_id, [])
+    if not user_notes:
+        await update.message.reply_text("Aún no tienes logros ni notas guardadas. Usa /anotar para registrar tu avance.")
+        return
+    msg = "📒 *Tu historial de notas y logros:*\n\n"
+    for n in user_notes[-10:][::-1]:
+        msg += f"{n['date']} ({n['phase']}):\n{n['note']}\n\n"
+    await update.message.reply_text(msg, parse_mode='Markdown')
+
+async def meditacion(update, context):
+    args = context.args
+    tema = args[0].lower() if args else 'proyectos'
+    phase_idx = get_moon_phase()
+    phase_name = MOON_PHASE_NAMES[phase_idx]
+    try:
+        with open("rituals_db.json", "r", encoding="utf-8") as f:
+            rituals_db = json.load(f)
+        meditaciones = rituals_db[phase_name]["meditaciones"].get(tema, [])
+    except Exception:
+        meditaciones = []
+    if meditaciones:
+        texto = random.choice(meditaciones)
+        await update.message.reply_text(f"🧘 Meditación para {tema} en {phase_name}:\n\n{texto}")
+    else:
+        await update.message.reply_text(f"No hay meditación registrada para el tema '{tema}' en {phase_name}.")
+
+# Conversation handler para anotar
+note_conv_handler = ConversationHandler(
+    entry_points=[CommandHandler('anotar', ask_note)],
+    states={
+        NOTE: [MessageHandler(filters.TEXT & ~filters.COMMAND, save_note)]
+    },
+    fallbacks=[CommandHandler('cancelar', cancel_note)]
+)
 
 def main():
     if not TOKEN:
         raise ValueError("TELEGRAM_TOKEN is not set in the environment.")
-    updater = Updater(TOKEN, use_context=True)
-    dp = updater.dispatcher
-    dp.add_handler(CommandHandler('start', start))
-    dp.add_handler(CommandHandler('moon', moon))
-    updater.start_polling()
-    updater.idle()
+    app = ApplicationBuilder().token(TOKEN).build()
+    app.add_handler(CommandHandler('start', start))
+    app.add_handler(CommandHandler('moon', moon))
+    app.add_handler(CommandHandler('logros', show_logros))
+    app.add_handler(note_conv_handler)
+    app.add_handler(CommandHandler('meditacion', meditacion))
+    app.run_polling()
 
 if __name__ == "__main__":
     main() 
