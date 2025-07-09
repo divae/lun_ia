@@ -241,15 +241,33 @@ note_conv_handler = ConversationHandler(
 
 CHANNEL_CHAT_ID = '@lun_ia_oficial'
 
-async def send_welcome_message(app):
+async def send_daily_moon_message(app):
+    idx = get_moon_phase()
+    phase_name = MOON_PHASE_NAMES[idx]
+    phase_data = MOON_DATA[phase_name]
+    days = days_until_new_moon()
+    recommendation = random.choice(phase_data["recommendations"])
+    ritual = random.choice(phase_data["rituals"])
+    quote = random.choice(phase_data["quotes"])
+    tip = random.choice(phase_data["tips"])
+    now = datetime.now().strftime('%A, %-d de %B de %Y')
     message = (
-        "🌙 ¡Bienvenid@ a LUN.IA!\n\n"
-        "Aquí recibirás inspiración lunar, recomendaciones, rituales y tips para tus proyectos y bienestar.\n\n"
-        "Puedes interactuar conmigo en privado para anotar tus avances, pedir meditaciones, mantras o conjuros personalizados.\n"
-        "Usa /contacto para saber más o apoyar el proyecto.\n\n"
-        "¡Que la Luna ilumine tu camino! ✨"
+        f"✨ *LUN.IA - Mensaje Lunar Diario* ✨\n"
+        f"━━━━━━━━━━━━━━━━━━━━━━\n"
+        f"📅 *{now.capitalize()}*\n"
+        f"🌙 *Fase lunar:* {phase_name}\n"
+        f"━━━━━━━━━━━━━━━━━━━━━━\n"
+        f"🔮 *Recomendación:*\n{recommendation}\n\n"
+        f"🧘 *Ritual:*\n{ritual}\n\n"
+        f"💬 *Cita del día:*\n_{quote}_\n\n"
+        f"🗓️ *Próxima Luna Nueva:* Faltan {days} días\n"
+        f"━━━━━━━━━━━━━━━━━━━━━━\n"
+        f"💡 *Tip lunar:* {tip}\n"
+        f"━━━━━━━━━━━━━━━━━━━━━━\n\n"
+        f"¿Quieres inspiración personalizada, mantras, meditaciones o anotar tus logros?\n"
+        f"Habla conmigo en privado: [@lun_ia_bot](https://t.me/lun_ia_bot)"
     )
-    await app.bot.send_message(chat_id=CHANNEL_CHAT_ID, text=message)
+    await app.bot.send_message(chat_id=CHANNEL_CHAT_ID, text=message, parse_mode='Markdown')
 
 def main():
     if not TOKEN:
@@ -265,7 +283,7 @@ def main():
     app.add_handler(CommandHandler('contacto', contacto))
 
     import asyncio
-    asyncio.run(send_welcome_message(app))
+    asyncio.run(send_daily_moon_message(app))
 
     app.run_polling()
 
