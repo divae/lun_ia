@@ -8,7 +8,7 @@ Este repositorio está listo para ser publicado gratis usando **GitHub Pages**.
 ## 🌙 ¿Qué es este proyecto?
 
 - Landing page sobre la influencia científica de la Luna en el sueño, hidratación y emociones.
-- Botón de donación (Ko-fi) para apoyar el proyecto.
+- Botón de donación (Buy Me a Coffee) para apoyar el proyecto.
 - Formulario de contacto (Formspree).
 - Acceso directo al canal de Telegram.
 - Diseño moderno, limpio y responsive.
@@ -40,7 +40,7 @@ Este archivo README.md es solo para mostrar información en la portada del repos
 
 ## ☕ Apoya el proyecto
 
-Si te gusta LUN.IA, puedes invitarme a un café virtual en [Ko-fi](https://ko-fi.com/estela)
+Si te gusta LUN.IA, puedes invitarme a un café virtual en [Buy Me a Coffee](https://buymeacoffee.com/estela)
 
 ---
 
