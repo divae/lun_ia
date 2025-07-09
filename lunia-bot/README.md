@@ -1,120 +1,128 @@
 # LUN.IA Telegram Bot
 
-A Telegram bot that provides information about the current moon phase, recommendations, rituals, quotes, and lunar tips, all in Spanish. The bot is designed for wellness, science, and lunar enthusiasts.
+Un bot de Telegram que te acompaña con información sobre la fase lunar actual, recomendaciones, rituales, citas y tips lunares, todo en español. Ideal para bienestar, ciencia y desarrollo personal.
 
-## Features
-- Get the current moon phase in Spanish
-- Receive a random recommendation, ritual, quote, and tip for the phase
-- Calculates days until the next New Moon
-- All content is easily editable via a JSON database
-- **NEW:** Register your daily project notes and track your progress and achievements
-- **NEW:** Get personalized meditations, mantras, and spells for each lunar phase and topic
-- **NEW:** Contact the creator for personalized guidance and support, or support the project with a coffee
+## Funcionalidades
+- Consulta la fase lunar actual en español
+- Recibe una recomendación, ritual, cita y tip aleatorio según la fase
+- Calcula los días hasta la próxima Luna Nueva
+- Todo el contenido es editable fácilmente desde una base de datos JSON
+- **NUEVO:** Registra tus notas diarias de proyecto y consulta tu historial de logros
+- **NUEVO:** Obtén meditaciones, mantras y conjuros personalizados para cada fase lunar y tema
+- **NUEVO:** Contacta con la creadora para guía personalizada
+- **NUEVO:** Los comandos principales aparecen como botones interactivos en Telegram
 
-## Quick Start
+## Comandos principales
 
-1. **Clone the repository**
+- `/luna` – Mensaje lunar del día
+- `/anotar` – Registrar avance, idea o logro
+- `/logros` – Ver historial de notas
+- `/meditacion [tema]` – Inspiración personalizada (ej: proyectos, amor, creatividad)
+- `/mantra [tema]` – Mantra lunar
+- `/conjuro [tema]` – Conjuro lunar
+- `/contacto` – Contactar o info
+- `/cancelar` – Cancelar anotación
+
+Los comandos aparecen como botones en el teclado de Telegram para facilitar su uso.
+
+## Inicio rápido
+
+1. **Clona el repositorio**
    ```bash
    git clone https://github.com/divae/lun_ia.git
    cd lunia-bot
    ```
 
-2. **Install dependencies**
+2. **Instala las dependencias**
    ```bash
    pip install -r requirements.txt
    ```
 
-3. **Set up your Telegram bot token**
-   - Create a file called `.env` in the `lunia-bot` directory:
+3. **Configura tu token de Telegram**
+   - Crea un archivo `.env` en el directorio `lunia-bot`:
      ```
-     TELEGRAM_TOKEN=your_token_here
+     TELEGRAM_TOKEN=tu_token_aqui
      ```
-   - **Never share your real token or commit `.env` to GitHub!**
-   - You can use `.env.example` as a template.
+   - **Nunca compartas tu token real ni subas `.env` a GitHub!**
+   - Puedes usar `.env.example` como plantilla.
 
-4. **Run the bot**
+4. **Ejecuta el bot**
    ```bash
    python bot.py
    ```
 
-5. **Try it on Telegram**
-   - Open your bot in Telegram and send `/moon` to get the lunar info.
-   - After each lunar message, the bot will invite you to write a note about your project or day.
-   - Use `/anotar` to register a new note at any time.
-   - Use `/logros` to see your last 10 notes and achievements.
-   - Use `/meditacion [tema]`, `/mantra [tema]` o `/conjuro [tema]` para recibir inspiración personalizada.
-   - Use `/contacto` to get in touch for personalized guidance or to support the project.
+5. **Pruébalo en Telegram**
+   - Abre tu bot en Telegram y envía `/luna` para recibir el mensaje lunar.
+   - Después de cada mensaje lunar, el bot te invitará a anotar tu avance, idea o logro.
+   - Usa los botones o comandos para acceder a todas las funciones.
 
-## Project Structure
+## Estructura del proyecto
 
 ```
 lunia-bot/
-├── bot.py           # Main bot code
-├── moon_data.json   # Database of recommendations, rituals, quotes, and tips
-├── rituals_db.json  # Meditations, mantras, and spells by lunar phase and topic
-├── user_notes.json  # User notes and achievements (auto-generated)
-├── requirements.txt # Python dependencies
-├── .env             # Your secret token (never commit this!)
-├── .env.example     # Example environment file
-├── README.md        # This documentation
+├── bot.py           # Código principal del bot
+├── moon_data.json   # Base de datos de recomendaciones, rituales, citas y tips
+├── rituals_db.json  # Meditaciones, mantras y conjuros por fase y tema
+├── user_notes.json  # Notas y logros de usuarios (se genera automáticamente)
+├── requirements.txt # Dependencias de Python
+├── .env             # Token secreto (¡no subir!)
+├── .env.example     # Ejemplo de archivo de entorno
+├── README.md        # Esta documentación
 ```
 
-## Personal Notes & Achievements
-- After each lunar message, the bot invites you to write a note about your project, progress, ideas, or feelings.
-- Use `/anotar` to add a note at any time. You can cancel with `/cancelar`.
-- All notes are saved in `user_notes.json` (private, not shared).
-- Use `/logros` to see your last 10 notes, with date and lunar phase.
-- This feature helps you reflect, track your growth, and celebrate your journey.
+## Notas personales y logros
+- Tras cada mensaje lunar, el bot te invita a anotar tu avance, idea o logro.
+- Usa `/anotar` para añadir una nota en cualquier momento. Puedes cancelar con `/cancelar`.
+- Todas las notas se guardan en `user_notes.json` (privado, no compartido).
+- Usa `/logros` para ver tus últimas 10 notas, con fecha y fase lunar.
 
-## Meditations, Mantras & Spells
-- Use `/meditacion [tema]` to receive a meditation adapted to the current lunar phase and your chosen topic (e.g., proyectos, amor, creatividad).
-- Use `/mantra [tema]` to receive a mantra for the day and your topic.
-- Use `/conjuro [tema]` to receive a simple, safe spell for your intention.
-- If you don't specify a topic, the bot will use a default (e.g., proyectos o protección).
-- Example:
+## Meditaciones, mantras y conjuros
+- Usa `/meditacion [tema]` para recibir una meditación adaptada a la fase lunar y tema elegido.
+- Usa `/mantra [tema]` para recibir un mantra para el día y tu tema.
+- Usa `/conjuro [tema]` para recibir un conjuro sencillo y seguro para tu intención.
+- Si no especificas tema, el bot usará uno por defecto (ej: proyectos o protección).
+- Ejemplo:
   - `/meditacion proyectos`
   - `/mantra amor`
   - `/conjuro abundancia`
-- The bot will answer with a text from its curated database, adapted to the current lunar phase.
 
-## Contact & Support
-- Use `/contacto` to get in touch with the creator for personalized guidance, lunar coaching, or project inspiration.
-- Contact via Telegram: [@divae](https://t.me/divae)
-- **Support the project:** If you enjoy LUN.IA and want to help it grow, you can invite Estela to a virtual coffee at [Buy Me a Coffee](https://buymeacoffee.com/estela)
-- **Transparency:** All recommendations, meditations, and rituals are created by combining Estela's personal experience, intuition, and the support of artificial intelligence tools, to offer you unique and adapted guidance for each lunar phase and your personal journey.
+## Contacto
+- Usa `/contacto` para contactar con la creadora para guía personalizada, inspiración lunar o dudas.
+- Contacto vía Telegram: [@divae](https://t.me/divae)
+- **Transparencia:** Todas las recomendaciones, meditaciones y rituales combinan experiencia personal, intuición y herramientas de inteligencia artificial para ofrecerte inspiración adaptada a cada fase lunar y a tu camino personal.
 
-## Security: Keeping Your Token Safe
-- Your Telegram token must be stored in `.env` and **never** committed to GitHub.
-- `.env` is included in `.gitignore` by default.
-- Share `.env.example` for collaborators to know the required variable.
+## Seguridad: Mantén tu token seguro
+- El token de Telegram debe estar en `.env` y **nunca** subirse a GitHub.
+- `.env` está incluido en `.gitignore` por defecto.
+- Comparte `.env.example` para que otros sepan qué variable necesitan.
 
-## Customizing Content
-- Edit `moon_data.json` to add or change recommendations, rituals, quotes, and tips for each lunar phase.
-- Edit `rituals_db.json` to add or change meditations, mantras, and spells for each phase and topic.
-- No need to modify the code for content updates!
+## Personaliza el contenido
+- Edita `moon_data.json` para añadir o cambiar recomendaciones, rituales, citas y tips para cada fase lunar.
+- Edita `rituals_db.json` para añadir o cambiar meditaciones, mantras y conjuros para cada fase y tema.
+- ¡No necesitas modificar el código para actualizar el contenido!
 
-## Troubleshooting
-- **Bot says `TELEGRAM_TOKEN is not set in the environment.`**
-  - Make sure `.env` exists in the `lunia-bot` directory and is formatted as `TELEGRAM_TOKEN=your_token_here`.
-  - Run the bot from the `lunia-bot` directory.
-- **FileNotFoundError for `moon_data.json` or `rituals_db.json`**
-  - Ensure both files are in the same directory as `bot.py`.
-- **No response in Telegram**
-  - Check that your bot is running and that the token is correct.
+## Problemas comunes
+- **El bot dice `TELEGRAM_TOKEN is not set in the environment.`**
+  - Asegúrate de que `.env` existe en el directorio `lunia-bot` y está bien escrito.
+  - Ejecuta el bot desde el directorio correcto.
+- **FileNotFoundError para `moon_data.json` o `rituals_db.json`**
+  - Asegúrate de que ambos archivos están en el mismo directorio que `bot.py`.
+- **No responde en Telegram**
+  - Verifica que el bot está corriendo y el token es correcto.
 
 ## FAQ
-**Q: Can I add more tips, meditations, mantras or spells?**  
-A: Yes! Just edit the JSON files and restart the bot.
+**¿Puedo añadir más tips, meditaciones, mantras o conjuros?**  
+¡Sí! Solo edita los archivos JSON y reinicia el bot.
 
-**Q: How do I keep my token secret?**  
-A: Never share your `.env` file. Use `.env.example` for documentation.
+**¿Cómo mantengo mi token secreto?**  
+Nunca compartas tu `.env`. Usa `.env.example` para documentar.
 
-**Q: Can I run this on a server?**  
-A: Yes, just make sure Python and the dependencies are installed, and the `.env` file is present.
+**¿Puedo ejecutarlo en un servidor?**  
+Sí, solo asegúrate de tener Python, las dependencias y el `.env`.
 
-## Contributing
-- Fork the repo and submit a pull request.
-- Suggestions, bug reports, and improvements are welcome!
+## Contribuir
+- Haz fork del repo y envía un pull request.
+- ¡Sugerencias, bugs y mejoras son bienvenidas!
 
-## License
+## Licencia
 MIT 
