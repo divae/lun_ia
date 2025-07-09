@@ -221,6 +221,15 @@ async def conjuro(update, context):
     else:
         await update.message.reply_text(f"No hay conjuro registrado para el tema '{tema}' en {phase_name}.")
 
+async def contacto(update, context):
+    msg = (
+        "¿Quieres una consulta personalizada, acompañamiento lunar o inspiración para tu proyecto?\n"
+        "Puedes contactarme directamente en Telegram: @divae\n"
+        "O por email: estela.medrano.dev@gmail.com\n\n"
+        "En LUN.IA combino mi experiencia personal, intuición y herramientas de inteligencia artificial para ofrecerte inspiración, rituales y guía adaptados a ti y a tu momento."
+    )
+    await update.message.reply_text(msg)
+
 # Conversation handler para anotar
 note_conv_handler = ConversationHandler(
     entry_points=[CommandHandler('anotar', ask_note)],
@@ -241,6 +250,7 @@ def main():
     app.add_handler(CommandHandler('meditacion', meditacion))
     app.add_handler(CommandHandler('mantra', mantra))
     app.add_handler(CommandHandler('conjuro', conjuro))
+    app.add_handler(CommandHandler('contacto', contacto))
     app.run_polling()
 
 if __name__ == "__main__":
