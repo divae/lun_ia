@@ -187,6 +187,23 @@ async def meditacion(update, context):
     else:
         await update.message.reply_text(f"No hay meditación registrada para el tema '{tema}' en {phase_name}.")
 
+async def mantra(update, context):
+    args = context.args
+    tema = args[0].lower() if args else 'proyectos'
+    phase_idx = get_moon_phase()
+    phase_name = MOON_PHASE_NAMES[phase_idx]
+    try:
+        with open("rituals_db.json", "r", encoding="utf-8") as f:
+            rituals_db = json.load(f)
+        mantras = rituals_db[phase_name]["mantras"].get(tema, [])
+    except Exception:
+        mantras = []
+    if mantras:
+        texto = random.choice(mantras)
+        await update.message.reply_text(f"🕉️ Mantra para {tema} en {phase_name}:\n\n" + '"' + texto + '"')
+    else:
+        await update.message.reply_text(f"No hay mantra registrado para el tema '{tema}' en {phase_name}.")
+
 # Conversation handler para anotar
 note_conv_handler = ConversationHandler(
     entry_points=[CommandHandler('anotar', ask_note)],
@@ -205,6 +222,7 @@ def main():
     app.add_handler(CommandHandler('logros', show_logros))
     app.add_handler(note_conv_handler)
     app.add_handler(CommandHandler('meditacion', meditacion))
+    app.add_handler(CommandHandler('mantra', mantra))
     app.run_polling()
 
 if __name__ == "__main__":
