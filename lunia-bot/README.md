@@ -9,7 +9,7 @@ A Telegram bot that provides information about the current moon phase, recommend
 - All content is easily editable via a JSON database
 - **NEW:** Register your daily project notes and track your progress and achievements
 - **NEW:** Get personalized meditations, mantras, and spells for each lunar phase and topic
-- **NEW:** Contact the creator for personalized guidance and support
+- **NEW:** Contact the creator for personalized guidance and support, or support the project with a coffee
 
 ## Quick Start
 
@@ -43,7 +43,7 @@ A Telegram bot that provides information about the current moon phase, recommend
    - Use `/anotar` to register a new note at any time.
    - Use `/logros` to see your last 10 notes and achievements.
    - Use `/meditacion [tema]`, `/mantra [tema]` o `/conjuro [tema]` para recibir inspiración personalizada.
-   - Use `/contacto` to get in touch for personalized guidance.
+   - Use `/contacto` to get in touch for personalized guidance or to support the project.
 
 ## Project Structure
 
@@ -77,9 +77,10 @@ lunia-bot/
   - `/conjuro abundancia`
 - The bot will answer with a text from its curated database, adapted to the current lunar phase.
 
-## Contact & Personalized Guidance
+## Contact & Support
 - Use `/contacto` to get in touch with the creator for personalized guidance, lunar coaching, or project inspiration.
-- You can contact Estela directly on Telegram: [@divae](https://t.me/divae) or by email: estela.medrano.dev@gmail.com
+- Contact via Telegram: [@divae](https://t.me/divae)
+- **Support the project:** If you enjoy LUN.IA and want to help it grow, you can invite Estela to a virtual coffee at [Buy Me a Coffee](https://buymeacoffee.com/estela)
 - **Transparency:** All recommendations, meditations, and rituals are created by combining Estela's personal experience, intuition, and the support of artificial intelligence tools, to offer you unique and adapted guidance for each lunar phase and your personal journey.
 
 ## Security: Keeping Your Token Safe
