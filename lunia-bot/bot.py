@@ -115,8 +115,20 @@ async def moon(update, context):
     await update.message.reply_text("¿Te gustaría anotar algo sobre tu proyecto hoy? Usa /anotar para registrar tu avance, idea o logro.")
 
 async def start(update, context):
-    """Send a welcome message and usage instructions."""
-    await update.message.reply_text("¡Hola! Usa /moon para obtener la fase lunar actual, una recomendación y un ritual.")
+    """Send a neutral, professional welcome message and usage instructions."""
+    msg = (
+        "🌙 ¡Bienvenid@ a LUN.IA!\n\n"
+        "Aquí puedes recibir inspiración lunar diaria, recomendaciones, rituales, mantras, meditaciones y tips para tus proyectos y bienestar.\n\n"
+        "✨ ¿Qué puedes hacer?\n"
+        "- Usa /moon para ver el mensaje lunar del día.\n"
+        "- Usa /anotar para registrar tus avances, ideas o logros personales.\n"
+        "- Usa /logros para ver tu historial de notas.\n"
+        "- Usa /meditacion [tema], /mantra [tema] o /conjuro [tema] para recibir inspiración personalizada según la fase lunar y el tema que elijas (ej: proyectos, amor, creatividad, protección...).\n"
+        "- Usa /contacto para saber cómo contactar o apoyar el proyecto.\n\n"
+        "¿List@ para conectar tus proyectos y tu bienestar con la energía de la Luna? 🌕\n\n"
+        "¡Escribe /moon para comenzar!"
+    )
+    await update.message.reply_text(msg)
 
 NOTE, = range(1)
 
