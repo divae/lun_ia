@@ -265,7 +265,7 @@ async def send_daily_moon_message(app):
         f"💡 *Tip lunar:* {tip}\n"
         f"━━━━━━━━━━━━━━━━━━━━━━\n\n"
         f"¿Quieres inspiración personalizada, mantras, meditaciones o anotar tus logros?\n"
-        f"Habla conmigo en privado: [@lun_ia_bot](https://t.me/lun_ia_bot)"
+        f"Habla conmigo en privado: [@lun_ia_my_bot](https://t.me/lun_ia_my_bot)"
     )
     await app.bot.send_message(chat_id=CHANNEL_CHAT_ID, text=message, parse_mode='Markdown')
 
