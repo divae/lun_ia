@@ -1,0 +1,103 @@
+{
+  "Luna Nueva": {
+    "meditaciones": {
+      "proyectos": [
+        "Cierra los ojos, respira profundo y visualiza tu proyecto germinando como una semilla bajo la tierra fértil de la Luna Nueva. Siente la energía de los nuevos comienzos en cada inhalación."
+      ],
+      "amor": [
+        "Imagina una luz suave envolviendo tu corazón, renovando tu capacidad de amar y ser amada."
+      ],
+      "creatividad": [
+        "Respira hondo y visualiza una chispa de inspiración encendiendo tu mente, lista para crear algo nuevo."
+      ]
+    },
+    "mantras": {
+      "proyectos": [
+        "Hoy planto la semilla de mi intención y confío en su crecimiento."
+      ],
+      "amor": [
+        "Me abro a nuevas posibilidades de amor y conexión."
+      ],
+      "creatividad": [
+        "Mi mente es fértil y mis ideas florecen."
+      ]
+    },
+    "conjuros": {
+      "proteccion": [
+        "Enciendo esta vela blanca y pido a la Luna Nueva que proteja mi camino y mis sueños."
+      ],
+      "abundancia": [
+        "Bajo la Luna Nueva, escribo mi deseo de abundancia y lo guardo bajo mi almohada."
+      ]
+    }
+  },
+  "Cuarto Creciente": {
+    "meditaciones": {
+      "proyectos": [
+        "Visualiza tu proyecto creciendo y fortaleciéndose con cada día. Siente la motivación y la energía de avanzar."
+      ],
+      "amor": [
+        "Imagina tus relaciones floreciendo, creciendo en confianza y alegría."
+      ]
+    },
+    "mantras": {
+      "proyectos": [
+        "Doy pasos firmes y constantes hacia mis metas."
+      ],
+      "amor": [
+        "Mi amor crece y se fortalece cada día."
+      ]
+    },
+    "conjuros": {
+      "creatividad": [
+        "Bajo la Luna Creciente, enciendo una vela naranja para atraer inspiración y nuevas ideas."
+      ]
+    }
+  },
+  "Luna Llena": {
+    "meditaciones": {
+      "proyectos": [
+        "Respira profundo y visualiza tu proyecto brillando con luz propia, alcanzando su máximo potencial."
+      ],
+      "abundancia": [
+        "Imagina la luz de la Luna Llena llenando tu vida de prosperidad y gratitud."
+      ]
+    },
+    "mantras": {
+      "proyectos": [
+        "Celebro mis logros y agradezco mi crecimiento."
+      ],
+      "abundancia": [
+        "La abundancia fluye hacia mí con facilidad y alegría."
+      ]
+    },
+    "conjuros": {
+      "amor": [
+        "Bajo la Luna Llena, escribo en un papel todo lo que amo de mi vida y lo leo en voz alta bajo su luz."
+      ]
+    }
+  },
+  "Cuarto Menguante": {
+    "meditaciones": {
+      "proyectos": [
+        "Cierra los ojos y visualiza soltando lo que ya no aporta a tu proyecto. Siente la ligereza de dejar ir."
+      ],
+      "proteccion": [
+        "Imagina una burbuja de luz que te envuelve, limpiando y protegiendo tu energía."
+      ]
+    },
+    "mantras": {
+      "proyectos": [
+        "Suelto lo que no me sirve y abro espacio para lo nuevo."
+      ],
+      "proteccion": [
+        "Estoy protegida y en paz en cada paso que doy."
+      ]
+    },
+    "conjuros": {
+      "limpieza": [
+        "Bajo la Luna Menguante, quemo una hoja con lo que quiero soltar y dejo que el humo se lleve lo viejo."
+      ]
+    }
+  }
+} 
