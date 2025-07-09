@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>¡Gracias! — LUN.IA</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #0f0e17;
+      color: #f4f4f4;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+    }
+    
+    .container {
+      max-width: 600px;
+      padding: 2rem;
+    }
+    
+    .moon-icon {
+      font-size: 4rem;
+      margin-bottom: 2rem;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+    
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 20px #ff8906;
+      }
+      to {
+        text-shadow: 0 0 30px #ff8906, 0 0 40px #ff8906;
+      }
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #ff8906;
+    }
+    
+    h2 {
+      font-weight: 300;
+      font-size: 1.3rem;
+      color: #a7a9be;
+      margin-bottom: 2rem;
+    }
+    
+    p {
+      font-size: 1.1rem;
+      color: #d3d3d3;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+    
+    .buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 3rem;
+    }
+    
+    .btn {
+      background: #ff8906;
+      color: #0f0e17;
+      padding: 0.75rem 1.5rem;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+    
+    .btn:hover {
+      background: #ffa94d;
+      transform: translateY(-2px);
+    }
+    
+    .btn-secondary {
+      background: transparent;
+      color: #a7a9be;
+      border: 2px solid #a7a9be;
+    }
+    
+    .btn-secondary:hover {
+      background: #a7a9be;
+      color: #0f0e17;
+    }
+    
+    .countdown {
+      font-size: 0.9rem;
+      color: #a7a9be;
+      margin-top: 2rem;
+    }
+    
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+      
+      .buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .btn {
+        width: 200px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="moon-icon">🌕</div>
+    
+    <h1>¡Mensaje Enviado!</h1>
+    
+    <h2>Gracias por contactarme</h2>
+    
+    <p>
+      Tu mensaje ha llegado a mi buzón lunar. Te responderé pronto con la energía y sabiduría que mereces.
+    </p>
+    
+    <p style="font-size: 0.9rem; color: #a7a9be;">
+      Mientras tanto, ¿por qué no te unes a mi canal de Telegram para recibir guía lunar diaria?
+    </p>
+    
+    <div class="buttons">
+      <a href="https://t.me/lun_ia_oficial" class="btn" target="_blank">
+        Unirme al Canal LUN.IA
+      </a>
+      <a href="index.html" class="btn btn-secondary">
+        Volver al Sitio
+      </a>
+    </div>
+    
+    <div class="countdown">
+      Redirigiendo automáticamente en <span id="timer">10</span> segundos...
+    </div>
+  </div>
+  
+  <script>
+    // Contador regresivo
+    let timeLeft = 10;
+    const timerElement = document.getElementById('timer');
+    
+    const countdown = setInterval(() => {
+      timeLeft--;
+      timerElement.textContent = timeLeft;
+      
+      if (timeLeft <= 0) {
+        clearInterval(countdown);
+        window.location.href = 'index.html';
+      }
+    }, 1000);
+  </script>
+</body>
+</html> 

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LUN.IA — Fases Lunares y Ciencia</title>
+  <style>
+    :root {
+      --accent: #ff8906;
+      --bg: #0f0e17;
+      --text: #f4f4f4;
+      --muted: #a7a9be;
+      --card: #181926;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', 'Inter', Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    header {
+      width: 100%;
+      text-align: center;
+      padding: 3rem 0 1rem 0;
+    }
+    .logo {
+      font-size: 2.5rem;
+      font-weight: bold;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+    }
+    .subtitle {
+      color: var(--muted);
+      font-size: 1.2rem;
+      margin-top: 0.5rem;
+      font-weight: 300;
+    }
+    .main-card {
+      background: var(--card);
+      border-radius: 20px;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.12);
+      padding: 2.5rem 2rem 2rem 2rem;
+      max-width: 420px;
+      width: 100%;
+      margin: 2rem 0 1.5rem 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .science {
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .kofi-btn {
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      border-radius: 25px;
+      padding: 0.9rem 2.2rem;
+      font-size: 1.1rem;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background 0.2s;
+      cursor: pointer;
+      display: inline-block;
+      margin-bottom: 1.5rem;
+    }
+    .kofi-btn:hover {
+      background: #ffa94d;
+    }
+    .telegram-btn {
+      background: transparent;
+      color: var(--accent);
+      border: 2px solid var(--accent);
+      border-radius: 25px;
+      padding: 0.8rem 2rem;
+      font-size: 1.05rem;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+      cursor: pointer;
+      display: inline-block;
+      margin-top: 1.2rem;
+    }
+    .telegram-btn:hover {
+      background: var(--accent);
+      color: var(--bg);
+    }
+    .contact-form {
+      width: 100%;
+      max-width: 400px;
+      margin: 2.5rem auto 0 auto;
+      background: var(--card);
+      border-radius: 15px;
+      padding: 2rem 1.2rem 1.2rem 1.2rem;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    .form-group label {
+      color: var(--muted);
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+      display: block;
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.7rem;
+      border: 1px solid var(--muted);
+      border-radius: 8px;
+      background: rgba(167, 169, 190, 0.08);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 1rem;
+      resize: vertical;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .submit-btn {
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      border-radius: 25px;
+      padding: 0.8rem 2rem;
+      font-size: 1.05rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 0.5rem;
+    }
+    .submit-btn:hover {
+      background: #ffa94d;
+    }
+    footer {
+      color: var(--muted);
+      font-size: 0.95rem;
+      text-align: center;
+      margin: 2rem 0 1rem 0;
+    }
+    @media (max-width: 600px) {
+      .main-card { padding: 1.2rem 0.5rem; }
+      .logo { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">LUN.IA</div>
+    <div class="subtitle">Guía de fases lunares con base científica y rituales</div>
+  </header>
+  <main>
+    <div class="main-card">
+      <div class="science">
+        La Luna influye en nuestros <b>ciclos de sueño</b>, <b>hidratación</b> y <b>estados emocionales</b>. Estudios científicos han demostrado que las fases lunares pueden afectar nuestro cuerpo y mente. <br><br>
+        Si te gusta este proyecto y quieres apoyarlo, puedes invitarme a un café virtual para que siga creciendo:
+      </div>
+      <a class="kofi-btn" href="https://ko-fi.com/estela" target="_blank">☕ Invítame un café en Ko-fi</a>
+      <a class="telegram-btn" href="https://t.me/lun_ia_oficial" target="_blank">Únete al canal de Telegram</a>
+    </div>
+    <form class="contact-form" action="https://formspree.io/f/movwoydz" method="POST">
+      <input type="hidden" name="_next" value="https://estela.lol/thank-you.html">
+      <div class="form-group">
+        <label for="name">Nombre:</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="message">Mensaje:</label>
+        <textarea id="message" name="message" rows="4" required></textarea>
+      </div>
+      <button type="submit" class="submit-btn">Enviar Mensaje</button>
+    </form>
+  </main>
+  <footer>
+    © 2025 LUN.IA · estela.lol
+  </footer>
+</body>
+</html>
