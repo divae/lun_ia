@@ -239,6 +239,18 @@ note_conv_handler = ConversationHandler(
     fallbacks=[CommandHandler('cancelar', cancel_note)]
 )
 
+CHANNEL_CHAT_ID = '@lun_ia_oficial'
+
+async def send_welcome_message(app):
+    message = (
+        "🌙 ¡Bienvenid@ a LUN.IA!\n\n"
+        "Aquí recibirás inspiración lunar, recomendaciones, rituales y tips para tus proyectos y bienestar.\n\n"
+        "Puedes interactuar conmigo en privado para anotar tus avances, pedir meditaciones, mantras o conjuros personalizados.\n"
+        "Usa /contacto para saber más o apoyar el proyecto.\n\n"
+        "¡Que la Luna ilumine tu camino! ✨"
+    )
+    await app.bot.send_message(chat_id=CHANNEL_CHAT_ID, text=message)
+
 def main():
     if not TOKEN:
         raise ValueError("TELEGRAM_TOKEN is not set in the environment.")
@@ -251,6 +263,10 @@ def main():
     app.add_handler(CommandHandler('mantra', mantra))
     app.add_handler(CommandHandler('conjuro', conjuro))
     app.add_handler(CommandHandler('contacto', contacto))
+
+    import asyncio
+    asyncio.run(send_welcome_message(app))
+
     app.run_polling()
 
 if __name__ == "__main__":
