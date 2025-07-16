@@ -7,10 +7,10 @@ Un bot de Telegram que te acompaña con información sobre la fase lunar actual,
 - Recibe una recomendación, ritual, cita y tip aleatorio según la fase
 - Calcula los días hasta la próxima Luna Nueva
 - Todo el contenido es editable fácilmente desde una base de datos JSON
-- **NUEVO:** Registra tus notas diarias de proyecto y consulta tu historial de logros
-- **NUEVO:** Obtén meditaciones, mantras y conjuros personalizados para cada fase lunar y tema
-- **NUEVO:** Contacta con la creadora para guía personalizada
-- **NUEVO:** Los comandos principales aparecen como botones interactivos en Telegram
+- Registra tus notas diarias de proyecto y consulta tu historial de logros
+- Obtén meditaciones, mantras y conjuros personalizados para cada fase lunar y tema
+- Contacta con la creadora para guía personalizada
+- Los comandos principales aparecen como botones interactivos en Telegram
 
 ## Comandos principales
 
@@ -21,9 +21,29 @@ Un bot de Telegram que te acompaña con información sobre la fase lunar actual,
 - `/mantra [tema]` – Mantra lunar
 - `/conjuro [tema]` – Conjuro lunar
 - `/contacto` – Contactar o info
+- `/intro` – Información sobre el bot
 - `/cancelar` – Cancelar anotación
+- `/lunarhoy` – Reenviar mensaje lunar del día (solo admin)
+- `/enviarluna` – Enviar mensaje lunar al canal (solo admin)
+- `/generarluna` – Generar texto lunar para revisión (solo admin)
 
-Los comandos aparecen como botones en el teclado de Telegram para facilitar su uso.
+Los comandos de administración solo pueden ser usados por la creadora (@divae).
+
+## Cómo usar los comandos de administración
+
+- **/generarluna**: Genera el texto del mensaje lunar diario y lo envía solo a la administradora en privado. Útil para revisar y modificar el mensaje antes de publicarlo.
+- **/enviarluna**: Envía el mensaje lunar diario al canal oficial (@lun_ia_oficial). Solo la administradora puede usarlo. Se recomienda usar primero /generarluna para revisar el texto.
+- **/lunarhoy**: Permite reenviar el mensaje lunar del día en privado, solo para pruebas de la administradora.
+
+## Flujo de publicación manual del mensaje lunar diario
+
+```mermaid
+graph TD;
+    A[La administradora ejecuta /generarluna] --> B[El bot genera el texto lunar y lo envía en privado]
+    B --> C[La administradora revisa y edita el texto si lo desea]
+    C --> D[La administradora ejecuta /enviarluna]
+    D --> E[El bot publica el mensaje lunar en el canal oficial]
+```
 
 ## Inicio rápido
 
