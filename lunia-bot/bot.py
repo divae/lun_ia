@@ -265,7 +265,7 @@ async def conjuro(update, context):
 
 async def contacto(update, context):
     msg = (
-        "Puedes contactarme directamente en Telegram: @divae\n\n"
+        "Puedes contactarme directamente en Telegram: @EstelaYoMisma\n\n"
         "Transparencia: este bot utiliza IA y experiencia personal para inspirar y acompañar proyectos y bienestar.\n"
     )
     await update.message.reply_text(msg)
@@ -325,7 +325,7 @@ async def post_init(app):
     await app.bot.set_my_commands(commands)
 
 # Nuevo comando para enviar el mensaje lunar diario manualmente al canal, solo para la administradora
-ADMIN_USERNAMES = ["divae", "EstelaYoMisma"]
+ADMIN_USERNAMES = ["EstelaYoMisma"]
 async def enviarluna(update, context):
     if update.effective_user.username not in ADMIN_USERNAMES:
         await update.message.reply_text("⛔ Este comando solo está disponible para la administradora.")
